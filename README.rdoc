@@ -1,9 +1,56 @@
 = parenthesize
 
-Description goes here.
+Parenthesize parameters in string or array to use in a SQL IN statement.
+
+== Install
+
+Install parenthesize like any other ruby gem:
+
+    gem install parenthesize
+
+== Overview of usage
+
+  parenthesize puts a single element or a group of elements inside paranthesis
+  in a format expected by the SQL statements IN clause.
+
+== Commands
+
+Available Command:
+
+  str = "ABC"
+  str.paranthesize  # ('ABC')
+
+  arr = ["ABC", "DEF", "XYZ"]
+  arr.paranthesize  # ('ABC', 'DEF', 'XYZ')
+
+  num = 789
+  num.paranthesize  # (789)
+
+  arr_num = [123, 456, 789]
+  arr_num.paranthesize  # (123, 456, 789)
+
+== Where to use parenthesize
+
+  You can build a SQL query as follows:
+
+  "SELECT id, name, address, fld from users where fld in #{my_flds.parenthesize} order by id"
+
+  Now my_ids will support the following values:
+
+  my_flds = 789  # (789)
+  my_flds = [123, 456, 789]  # (123, 456, 789)
+  my_flds = 'ABC'  # ('ABC')
+  my_flds = ['ABC', 'DEF', 'XYZ']  # ('ABC', 'DEF', 'XYZ')
+
+== Issues, Suggestions
+
+* https://github.com/aksharma/parenthesize/issues/
+* or email me directly at (sharma.rubyonrails)
+*     this address        (    @             )
+*                         (sharmail_dot_com  )
 
 == Contributing to parenthesize
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -14,6 +61,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2012 Anil Sharma. See LICENSE.txt for
-further details.
+Copyright (c) 2012 Anil Sharma. See LICENSE for further details.
 
